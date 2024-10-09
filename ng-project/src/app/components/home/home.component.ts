@@ -19,9 +19,17 @@ export class HomeComponent {
   }
 
   async loadPosts(): Promise<void> {
-    const res = await fetch('/assets/db.json');
-    this.posts = await res.json() as PostInterface[];
+    try {
+      const res = await fetch('../../../../public/db.json');
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      this.posts = await res.json() as PostInterface[];
+    } catch (error) {
+      console.error("Failed to load posts: ", error);
+    }
   }
+
 
   getTopPost(): PostInterface {
     return this.posts[0];
