@@ -7,6 +7,10 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
 
 const routes: Routes = [
   {
+    path: '',
+    component: HomeComponent,
+  },
+  {
     path: 'active',
     component: ActivePostsComponent,
   },
@@ -17,10 +21,6 @@ const routes: Routes = [
   {
     path: "post/:id",
     component: PostDetailComponent
-  },
-  {
-    path: '',
-    component: HomeComponent,
   },
 ];
 
