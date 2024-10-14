@@ -1,4 +1,4 @@
-<div class="flex m-4 px-40">
+<div class="flex m-4 px-32">
   <div class="flex flex-col justify-between items-end">
     <div class="px-6 py-4 mb-16">
       <h3 class="font-bold text-3xl mb-6 text-center mx-auto">
@@ -17,13 +17,57 @@
       </div>
     </div>
 
-    <div class="px-6 py-4">
-      <button
-        [routerLink]="['']"
-        class="bg-yellow-500 text-white font-bold py-2 px-4 rounded"
-      >
-        Go Back to the homepage
-      </button>
+    <div class="flex w-full justify-end">
+      <div *ngIf="showEditForm" class="py-4 w-3/5">
+        <form #postForm="ngForm" (ngSubmit)="onSubmitForm(postForm)">
+          <div class="mb-4">
+            <label
+              for="title"
+              class="block text-gray-700 text-sm font-bold mb-2"
+              >Title:</label
+            >
+            <input
+              type="text"
+              id="title"
+              [(ngModel)]="post.title"
+              name="title"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="body" class="block text-gray-700 text-sm font-bold mb-2"
+              >Body:</label
+            >
+            <textarea
+              id="body"
+              [(ngModel)]="post.body"
+              name="body"
+              class="shadow appearance-none border rounded w-full h-40 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="bg-black text-white font-bold py-2 px-4 rounded"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+
+      <div class="px-4 py-4 flex flex-col w-2/5">
+        <button
+          [routerLink]="['']"
+          class="bg-yellow-500 text-white font-bold py-2 px-4 rounded mt-7 mb-4"
+        >
+          Go Back to the homepage
+        </button>
+        <button
+          (click)="showEditForm = !showEditForm"
+          class="bg-blue-500 text-white font-bold py-2 px-4 rounded"
+        >
+          EDIT POST
+        </button>
+      </div>
     </div>
   </div>
 </div>

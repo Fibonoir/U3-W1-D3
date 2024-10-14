@@ -4,6 +4,7 @@ import { ActivePostsComponent } from './components/active-posts/active-posts.com
 import { InactivePostsComponent } from './components/inactive-posts/inactive-posts.component';
 import { HomeComponent } from './components/home/home.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { ImprovedHomeComponent } from './components/improved-home/improved-home.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
     path: "post/:id",
     component: PostDetailComponent
   },
+  {
+    path: "improved-Home",
+    component: ImprovedHomeComponent
+  }
 ];
 
 @NgModule({

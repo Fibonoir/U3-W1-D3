@@ -1,0 +1,33 @@
+<div class="flex mt-4 justify-center flex-wrap">
+  <div
+    *ngFor="let post of postArr"
+    [ngClass]="{
+      'bg-slate-100 shadow-sm shadow-sky-300': post.active,
+      'bg-red-100': !post.active
+    }"
+    class="flex w-2/4 md:w-2/5 rounded overflow-hidden shadow-lg m-4"
+  >
+    <div class="flex flex-col justify-between items-end">
+      <div class="px-6 py-4">
+        <div class="flex items-start mb-2">
+          <h3 class="font-bold text-3xl">{{ post.title }}</h3>
+          <p *ngIf="!post.active" class="text-red-700 font-bold px-2">
+            INACTIVE
+          </p>
+        </div>
+        <p class="text-gray-700 text-base">
+          {{ post.body }}
+        </p>
+      </div>
+
+      <div class="px-6 py-4">
+        <button
+          [routerLink]="['/post', post.id]"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Full Article
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
