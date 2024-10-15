@@ -1,20 +1,33 @@
-import { Component } from '@angular/core';
-import { iPost } from '../../interfaces/i-post';
-import { posts } from '../../../../public/posts';
+import { iPost } from './../../interfaces/i-post';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { PostsService } from '../../services/posts.service';
+import { TagsService } from '../../services/tags.service';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-improved-home',
   templateUrl: './improved-home.component.html',
-  styleUrl: './improved-home.component.scss'
+  styleUrls: ['./improved-home.component.scss']
 })
-export class ImprovedHomeComponent {
+export class ImprovedHomeComponent implements OnInit {
 
-  featuredPost!:iPost
+  tags!: string[];
+  selectedTag: string="SHOW ALL"
+
+
+  @Output() tagSelected = new EventEmitter<string>();
+
+  constructor(private postsService: PostsService, private tagsService: TagsService) {}
 
   ngOnInit(): void {
-    console.log(posts);
-    this.featuredPost = posts[0]
-
+    this.tagsService.getAllTags().then(tags => {
+      this.tags = ['SHOW ALL', ...tags.map(tag => new UpperCasePipe().transform(tag))];
+    });
   }
 
+  onTagClick(tag: string): void {
+    console.log("tag clicked");
+    this.selectedTag = tag;
+    this.tagSelected.emit(tag);
+  }
 }

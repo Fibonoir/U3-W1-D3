@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ImprovedHomeComponent } from './components/improved-home/improved-home.component';
 import { SinglePostComponent } from './components/single-post/single-post.component';
 import { FormsModule } from '@angular/forms';
+import { RandomBgDirective } from './random-bg.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     HomeComponent,
     ImprovedHomeComponent,
-    SinglePostComponent
+    SinglePostComponent,
+    RandomBgDirective
   ],
   imports: [
     BrowserModule,

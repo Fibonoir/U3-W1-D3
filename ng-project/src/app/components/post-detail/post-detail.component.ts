@@ -21,6 +21,8 @@ export class PostDetailComponent implements OnInit {
       this.postIndex = posts.findIndex(p => p.id == id);
       this.post = posts[this.postIndex];
     });
+    console.log(this.getAllTags());
+
   }
   onSubmitForm(form: NgForm) {
     if (form.valid) {
@@ -31,4 +33,12 @@ export class PostDetailComponent implements OnInit {
       console.log('Form is invalid');
     }
   }
+  getAllTags(): string[] {
+    return [...new Set(posts.flatMap(post => post.tags))];
+  }
+
+
+
 }
+
+
